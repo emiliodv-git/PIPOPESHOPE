@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIPOPE SHOPE — Termos estilo Owala | 24 oz y 32 oz</title>
+  <meta name="description" content="PIPOPE SHOPE: termos estilo Owala de 24 oz y 32 oz en México. Diseño premium, catálogo en crecimiento." />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ============================= HEADER ============================= -->
+  <header class="site-header" id="top">
+    <div class="container header-inner">
+      <a href="#top" class="brand">
+        <img src="assets/logo/logo-placeholder.svg" alt="PIPOPE SHOPE" class="brand-logo" />
+      </a>
+
+      <nav class="main-nav" id="main-nav">
+        <a href="#top" class="nav-link">Inicio</a>
+        <a href="#productos" class="nav-link">Productos</a>
+        <a href="#caracteristicas" class="nav-link">Características</a>
+        <a href="#faq" class="nav-link">FAQ</a>
+      </nav>
+
+      <div class="header-actions">
+        <button class="cart-toggle" id="cart-toggle" aria-label="Abrir carrito">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6 6h15l-1.5 9h-12L5 3H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="9" cy="20" r="1.6" fill="currentColor"/>
+            <circle cx="18" cy="20" r="1.6" fill="currentColor"/>
+          </svg>
+          <span>Carrito</span>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+
+        <button class="menu-toggle" id="menu-toggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================= HERO ============================= -->
+  <section class="hero">
+    <div class="container hero-inner">
+      <div class="hero-copy">
+        <p class="eyebrow">Nueva tienda en México</p>
+        <h1>PIPOPE SHOPE</h1>
+        <p class="hero-text">
+          Termos estilo Owala en dos capacidades: 24 oz y 32 oz.
+          Diseño premium, mucho espacio para tu día a día.
+        </p>
+        <a href="#productos" class="btn btn-primary" id="hero-cta">Ver productos</a>
+        <p class="hero-disclaimer">
+          PIPOPE SHOPE no es una tienda oficial de Owala. Los productos son termos de estilo similar,
+          comercializados a través de proveedores mayoristas.
+        </p>
+      </div>
+      <div class="hero-media">
+        <img src="assets/products/hero-placeholder.svg" alt="Termos PIPOPE SHOPE 24 oz y 32 oz (imagen provisional)" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PRODUCTOS ============================= -->
+  <section class="products" id="productos">
+    <div class="container">
+      <h2 class="section-title">Nuestros termos</h2>
+      <p class="section-subtitle">Elige la capacidad que mejor se adapte a tu día.</p>
+
+      <div class="product-grid" id="product-grid">
+        <!-- Las tarjetas de producto se generan dinámicamente desde js/data/products.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= CARACTERÍSTICAS ============================= -->
+  <section class="features" id="caracteristicas">
+    <div class="container">
+      <h2 class="section-title">Características</h2>
+      <p class="section-subtitle">Lo que sí podemos confirmarte hoy — el resto de la ficha técnica se irá completando con nuestro proveedor.</p>
+
+      <div class="compare-table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th></th>
+              <th>Termo 24 oz</th>
+              <th>Termo 32 oz</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Capacidad</td>
+              <td>24 oz</td>
+              <td>32 oz</td>
+            </tr>
+            <tr>
+              <td>Equivalencia aproximada</td>
+              <td>~710 ml</td>
+              <td>~946 ml</td>
+            </tr>
+            <tr>
+              <td>Ideal para</td>
+              <td>Uso diario, escuela, oficina</td>
+              <td>Jornadas largas, mayor hidratación</td>
+            </tr>
+            <tr>
+              <td>Material / aislamiento</td>
+              <td colspan="2" class="pending-cell">Por confirmar con proveedor</td>
+            </tr>
+            <tr>
+              <td>Colores disponibles</td>
+              <td colspan="2" class="pending-cell">Por confirmar</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="highlight-grid">
+        <div class="highlight-card">
+          <h3>Diseño premium</h3>
+          <p>Una imagen limpia y moderna, pensada para verse bien en tu escritorio, tu mochila o tu feed.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Catálogo en crecimiento</h3>
+          <p>Empezamos con termos 24 oz y 32 oz. Iremos sumando más productos y variantes conforme crezca PIPOPE SHOPE.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Hecho para tu ritmo</h3>
+          <p>Dos capacidades para que elijas según tu rutina: del día a día a las jornadas más largas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FAQ ============================= -->
+  <section class="faq" id="faq">
+    <div class="container">
+      <h2 class="section-title">Preguntas frecuentes</h2>
+
+      <div class="faq-list" id="faq-list">
+        <!-- Contenido generado desde js/main.js (array FAQ_ITEMS) -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= FOOTER ============================= -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="assets/logo/logo-placeholder.svg" alt="PIPOPE SHOPE" class="brand-logo" />
+        <p>Termos estilo Owala en México. Sitio en desarrollo — versión 1.</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Tienda</h4>
+        <a href="#productos">Productos</a>
+        <a href="#caracteristicas">Características</a>
+        <a href="#faq">FAQ</a>
+      </div>
+
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <!--
+          INTEGRACIÓN FUTURA: WhatsApp, Instagram, TikTok, Facebook, formulario
+          de contacto y dirección física. Configura estos datos en
+          js/data/futureIntegrations.js (enabled: true) y aparecerán aquí
+          automáticamente. Por ahora se muestra como "próximamente".
+        -->
+        <p class="pending-text">Canales de contacto — próximamente</p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Pagos</h4>
+        <!-- INTEGRACIÓN FUTURA: Mercado Pago / PayPal / Stripe. Ver js/data/futureIntegrations.js -->
+        <p class="pending-text">Checkout y pagos en línea — próximamente</p>
+      </div>
+    </div>
+    <div class="container footer-bottom">
+      <p>&copy; 2026 PIPOPE SHOPE. Todos los derechos reservados.</p>
+    </div>
+  </footer>
+
+  <!-- ============================= CARRITO (DRAWER) ============================= -->
+  <div class="cart-overlay" id="cart-overlay"></div>
+  <aside class="cart-drawer" id="cart-drawer" aria-hidden="true">
+    <div class="cart-drawer-header">
+      <h3>Tu carrito</h3>
+      <button id="cart-close" aria-label="Cerrar carrito">&times;</button>
+    </div>
+
+    <div class="cart-items" id="cart-items">
+      <!-- Generado dinámicamente desde js/cart.js -->
+    </div>
+
+    <div class="cart-summary">
+      <div class="cart-row">
+        <span>Subtotal</span>
+        <span id="cart-subtotal">$0.00 MXN</span>
+      </div>
+      <div class="cart-row cart-total">
+        <span>Total</span>
+        <span id="cart-total">$0.00 MXN</span>
+      </div>
+      <p class="cart-note">Los precios mostrados son TEMPORALES / PLACEHOLDER mientras se define el catálogo final.</p>
+      <button class="btn btn-primary btn-block" id="checkout-btn" disabled title="Checkout real próximamente">
+        Finalizar compra (próximamente)
+      </button>
+    </div>
+  </aside>
+
+  <!-- INTEGRACIÓN FUTURA: botón flotante de WhatsApp. Permanece oculto hasta
+       que js/data/futureIntegrations.js -> whatsapp.enabled sea true. -->
+  <a class="whatsapp-float" id="whatsapp-float" href="#" target="_blank" rel="noopener" style="display:none;" aria-label="Escríbenos por WhatsApp">
+    WhatsApp
+  </a>
+
+  <script src="js/data/products.js"></script>
+  <script src="js/data/futureIntegrations.js"></script>
+  <script src="js/cart.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<svg viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Imagen provisional del termo PIPOPE SHOPE 24 oz">
+  <defs>
+    <linearGradient id="bg24" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#FFF3EC"/>
+      <stop offset="100%" stop-color="#FDE6D8"/>
+    </linearGradient>
+    <linearGradient id="bottle24" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#FF7A52"/>
+      <stop offset="100%" stop-color="#FF5A36"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="560" rx="28" fill="url(#bg24)"/>
+  <!-- tapa -->
+  <rect x="150" y="60" width="100" height="34" rx="10" fill="#14181C"/>
+  <rect x="168" y="40" width="64" height="26" rx="8" fill="#14181C"/>
+  <!-- cuerpo del termo -->
+  <rect x="120" y="94" width="160" height="380" rx="46" fill="url(#bottle24)"/>
+  <rect x="120" y="94" width="160" height="380" rx="46" fill="none" stroke="#14181C" stroke-opacity="0.08" stroke-width="2"/>
+  <!-- franja clara -->
+  <rect x="120" y="260" width="160" height="60" fill="#FFFFFF" fill-opacity="0.18"/>
+  <!-- base -->
+  <rect x="128" y="454" width="144" height="26" rx="12" fill="#14181C" fill-opacity="0.12"/>
+  <text x="200" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#14181C" fill-opacity="0.55">PIPOPE SHOPE · 24 oz</text>
+  <text x="200" y="554" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" letter-spacing="2" fill="#14181C" fill-opacity="0.4">IMAGEN PROVISIONAL</text>
+</svg>
