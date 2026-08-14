@@ -1,31 +1,31 @@
 /**
  * ============================================================================
- *  INTEGRACIONES FUTURAS — PIPOPE SHOPE
+ *  INTEGRACIONES FUTURAS — PIPOPSHOP
  * ============================================================================
  *  Este archivo centraliza TODO lo que todavía no está activo en el sitio:
  *  WhatsApp, redes sociales, contacto, y pasarelas de pago/checkout real.
  *
- *  Nada de esto se muestra en la página todavía (enabled: false). Cuando
- *  tengas la información real, cambia los valores y pon `enabled: true`
- *  en el bloque correspondiente. Los componentes de UI (footer, botón
- *  flotante de WhatsApp, checkout) ya están preparados para leer de aquí
- *  — busca los comentarios "INTEGRACIÓN FUTURA" en index.html y js/main.js.
+ *  Cada bloque se activa de forma independiente con `enabled: true` +
+ *  sus datos reales. WhatsApp ya está activo (ver bloque `whatsapp`).
+ *  El resto sigue oculto hasta que definas su información. Los
+ *  componentes de UI (footer, botón flotante, carrito, sección Mayoreo,
+ *  checkout) ya están preparados para leer de aquí — busca los
+ *  comentarios "INTEGRACIÓN FUTURA" en index.html, js/main.js y js/render.js.
  * ============================================================================
  */
 
 const PIPOPE_FUTURE_INTEGRATIONS = {
   whatsapp: {
-    enabled: false,
-    phoneNumber: "", // Ej: "521XXXXXXXXXX"
-    defaultMessage: "Hola, quiero información sobre los termos PIPOPE SHOPE"
+    enabled: true,
+    phoneNumber: "522227821556", // Confirmado por PIPOPSHOP
+    defaultMessage: "Hola, quiero información sobre los termos PIPOPSHOP"
   },
 
   instagram: {
-    enabled: false,
-    // Cuenta ya reservada: @pipope_shope — NO mostrar en el sitio todavía
-    // (instrucción explícita: aún no se debe usar Instagram dentro de la página).
-    handle: "",
-    showFeed: false
+    enabled: true,
+    handle: "pipope_shope",
+    url: "https://www.instagram.com/pipope_shope/", // Perfil oficial confirmado
+    showFeed: false // Feed embebido: preparado para el futuro, no implementado todavía
   },
 
   tiktok: {

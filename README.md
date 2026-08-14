@@ -1,141 +1,133 @@
-# PIPOPE SHOPE — Sitio web (v1)
+# PIPOPSHOP — Sitio web (v2 — rediseño)
 
-Primera versión funcional de la tienda en línea de **PIPOPE SHOPE**: termos estilo Owala en 24 oz y 32 oz, para el mercado mexicano (MXN).
+Tienda en línea de **PIPOPSHOP**: termos estilo Owala en 24 oz y 32 oz para México (MXN), con venta por mayoreo desde 5 piezas.
 
 ---
 
-## 1. Qué se construyó
+## 1. Qué se construyó en este rediseño
 
-- Landing page completa: Header con navegación, Hero, catálogo de Productos (24 oz y 32 oz), sección de Características (comparativa + puntos de marca), FAQ, Carrito funcional y Footer.
-- Catálogo de productos **centralizado en un solo archivo**, fácil de editar sin tocar HTML/CSS.
-- Carrito de compras 100% frontend con persistencia en `localStorage` (no procesa pagos todavía).
-- Diseño **mobile-first**, probado en tamaños móvil, tablet y desktop.
-- Arquitectura preparada (pero desactivada) para integrar en el futuro: WhatsApp, Instagram, TikTok, Facebook, formulario de contacto, dirección física, Mercado Pago, PayPal y Stripe.
-- **Ningún dato técnico, de precio, color o política comercial fue inventado.** Todo lo que no pudo verificarse en donmayoreo.com se muestra explícitamente como "Por confirmar" / "Próximamente".
+- **Rediseño visual completo**: sistema de diseño con tokens (espaciados, sombras, radios, tiempos de transición), animaciones suaves al hacer scroll (`IntersectionObserver`, con degradación segura y respeto a `prefers-reduced-motion`), tarjetas de producto más limpias (ficha técnica pendiente ahora es un detalle plegable en vez de texto suelto), sombra de header al hacer scroll, franja de confianza en el Hero con datos reales.
+- **Nueva sección de Mayoreo** (`#mayoreo`): explicación del proceso en 3 pasos, tabla de precios (tarjetas apiladas en móvil, tabla en desktop — mismos datos, sin duplicar lógica), nota de reglas, mini-FAQ y botón "Solicitar cotización por WhatsApp".
+- **Carrito mejorado**: miniaturas, cantidades, subtotal/total (ya existían) + nuevo botón **"Enviar pedido por WhatsApp"** que arma un mensaje formateado con cada producto, color, cantidad, precio unitario, línea de total, subtotal y total.
+- **WhatsApp activado**: botón flotante, botón del carrito, botón de cotización de mayoreo y enlace en el footer, todos leyendo el mismo número desde un solo archivo de configuración.
+- Todo lo anterior (catálogo, carrito, colores, promociones, menú móvil, FAQ) **se mantiene funcionando igual que antes** — nada se rompió, solo se mejoró.
 
 ## 2. Tecnología utilizada
 
-HTML5, CSS3 y JavaScript "vanilla" (sin frameworks, sin bundler, sin dependencias externas). Se eligió deliberadamente este enfoque para que el sitio funcione abriendo directamente el archivo `index.html`, sin necesidad de instalar Node.js, Python ni ninguna otra herramienta (verifiqué que este equipo no las tiene instaladas).
+HTML5, CSS3 y JavaScript "vanilla" (sin frameworks, sin bundler, sin dependencias externas), para que el sitio siga funcionando abriendo directamente `index.html`, sin instalar Node.js ni Python.
 
-## 3. Archivos creados
+## 3. Archivos nuevos y modificados
 
 ```
-PIPOPESHOP/
-├── index.html                          # Estructura de toda la página
-├── README.md                           # Este documento
+PIPOPSHOP/
+├── index.html                          # Nav con Mayoreo, sección Mayoreo, carrito con botón WhatsApp
+├── README.md
 ├── css/
-│   └── styles.css                      # Todos los estilos (mobile-first)
+│   └── styles.css                      # Ampliado: tokens, animaciones, rediseño de todas las secciones
 ├── js/
 │   ├── data/
-│   │   ├── products.js                 # ⭐ CATÁLOGO — editar precios/colores/stock/imágenes aquí
-│   │   └── futureIntegrations.js       # ⭐ Config. de WhatsApp/redes/pagos (desactivada por ahora)
-│   ├── cart.js                         # Lógica del carrito (localStorage)
-│   ├── render.js                       # Pinta productos, FAQ y carrito en pantalla
-│   └── main.js                         # Inicializa el sitio y conecta los eventos (menú, carrito, FAQ)
+│   │   ├── products.js                 # ⭐ Catálogo (sin cambios de estructura)
+│   │   ├── wholesale.js                # ⭐ NUEVO — reglas y precios de mayoreo + mini-FAQ
+│   │   └── futureIntegrations.js       # WhatsApp ahora activo; resto sigue desactivado
+│   ├── cart.js                         # Sin cambios (misma lógica y forma de datos)
+│   ├── render.js                       # + renderWholesale(), FAQ reutilizable, tarjetas rediseñadas
+│   └── main.js                         # + animaciones, mensajes de WhatsApp, sombra de header
 └── assets/
-    ├── logo/
-    │   └── logo-placeholder.svg        # Logo provisional (texto "PIPOPE SHOPE")
+    ├── logo/logo-placeholder.svg
     └── products/
-        ├── hero-placeholder.svg        # Imagen provisional del hero
-        ├── termo-24oz/
-        │   └── placeholder-1.svg       # Imagen provisional del termo 24 oz
-        └── termo-32oz/
-            └── placeholder-1.svg       # Imagen provisional del termo 32 oz
+        ├── hero-placeholder.svg
+        └── colors/                     # 10 fotografías reales (compartidas por ambos productos)
 ```
-
-No se modificó ningún archivo existente porque el proyecto se creó desde cero en esta carpeta.
 
 ## 4. Dónde están los datos de los productos
 
-Todo el catálogo vive en **[`js/data/products.js`](js/data/products.js)**. Es el único archivo que necesitas tocar para:
-
-- Cambiar **precios** → propiedad `price` de cada producto (actualmente `349` y `399`, marcados como `priceIsPlaceholder: true` y mostrados en pantalla con la etiqueta "PRECIO TEMPORAL"). Cuando definas tus precios reales, actualiza `price` y pon `priceIsPlaceholder: false`.
-- Configurar **promociones/descuentos** → propiedad `compareAtPrice` (precio tachado). Déjalo en `null` si no hay promoción.
-- Agregar **colores/variantes** → arreglo `colors` (hoy vacío, `colorsStatus: "pending"` porque el proveedor no tiene colores confirmados). Ejemplo de cómo agregar uno lo encontrarás comentado en el propio archivo.
-- Definir **stock** → propiedad `stock` y `stockStatus`.
-- Reemplazar **fotografías** → arreglo `images`, apuntando a tus archivos dentro de `assets/products/`.
-- Editar **descripciones y características** → propiedades `description` y `features`.
-- Agregar **nuevos productos** (ej. un tercer tamaño en el futuro) → agrega un nuevo objeto al arreglo `PIPOPE_PRODUCTS` siguiendo la misma estructura; el catálogo, las tarjetas y el carrito se actualizan automáticamente, sin tocar HTML.
+Sigue igual: **[`js/data/products.js`](js/data/products.js)** — precios, `PIPOPE_COLORS`, imágenes, descripciones, features. Nada de esto cambió de estructura en el rediseño.
 
 ## 5. Dónde modificar precios
 
-`js/data/products.js` → propiedad `price` de cada producto (ver punto 4). No hay precios en ningún otro archivo.
+- **Precios de venta individual (retail)**: `js/data/products.js` → propiedad `price` de cada producto. Hoy: 24 oz en promoción a $500 (antes $620), 32 oz en promoción a $550 (antes $670), ambas "Válidas durante todo 2026".
+- **Precios de mayoreo**: **[`js/data/wholesale.js`](js/data/wholesale.js)** → arreglo `PIPOPE_WHOLESALE_TIERS`. Ahí también están las reglas (`PIPOPE_WHOLESALE_RULES`): mínimo 5 piezas, combinables, precio automático desde la pieza 5, cotización personalizada arriba del mínimo.
 
 ## 6. Dónde modificar colores
 
-- **Colores/variantes de producto** (para venta): arreglo `colors` en `js/data/products.js`.
-- **Colores de marca / paleta visual del sitio** (fondo, acentos, botones): variables CSS al inicio de `css/styles.css` (bloque `:root`, por ejemplo `--color-coral`, `--color-mint`, `--color-ink`). Cambiar esas variables actualiza el color en todo el sitio de forma consistente.
+- **Colores de producto**: arreglo `PIPOPE_COLORS` en `js/data/products.js`.
+- **Colores/paleta visual del sitio**: bloque `:root` en `css/styles.css` (coral, menta, ink, etc. — ahora con más variables: espaciados `--space-*`, sombras `--shadow-*`, tiempos `--duration-*`).
 
-## 7. Dónde colocar las fotografías reales
+## 7. Dónde colocar fotografías reales
 
-- Termo 24 oz → `assets/products/termo-24oz/` (reemplaza o agrega junto a `placeholder-1.svg` y actualiza la ruta en `images` dentro de `products.js`).
-- Termo 32 oz → `assets/products/termo-32oz/`.
-- Imagen del Hero → `assets/products/hero-placeholder.svg` (o agrega una nueva y actualiza la referencia en `index.html`).
-- Logo definitivo → `assets/logo/` (actualiza la ruta en `index.html`, hay dos referencias: header y footer).
+Igual que antes: `assets/products/colors/` para las fotos de color (usadas por ambos termos). La carpeta original `FOTOS CATALOGO-OWALAS/` se mantiene intacta como respaldo.
 
-Todas las imágenes actuales son **ilustraciones propias tipo placeholder** (SVG originales creados para este proyecto), no fotografías de Owala ni de donmayoreo.com, para no usar contenido cuyo derecho de uso no está confirmado.
+**Nota sobre 20 oz, 40 oz y modelo Tumbler**: por instrucción explícita, estos NO se agregaron como tarjetas de producto todavía (no hay fotos propias). Sí aparecen en la tabla de precios de Mayoreo con la etiqueta "Disponible por pedido", porque son datos de precio reales que sí nos diste. Cuando tengas sus fotos, se agregan como productos nuevos en `products.js` siguiendo el mismo patrón que 24 oz/32 oz — no hace falta rediseñar nada.
 
-## 8. Cómo funciona el carrito
+## 8. Cómo funciona el carrito (actualizado)
 
-- Implementado en `js/cart.js`, usando `localStorage` (clave `pipope_cart_v1`) para que el carrito **se mantenga aunque el usuario navegue o cierre y reabra el navegador**.
-- Permite: agregar producto, agregar varias unidades, ver artículos agregados, cambiar cantidades (+/-), eliminar productos, y calcula subtotal y total automáticamente.
-- El ícono de carrito en el header muestra el número de unidades y abre un panel lateral (drawer) con el detalle.
-- **No procesa pagos ni cobros reales todavía** — el botón "Finalizar compra" está deshabilitado intencionalmente hasta integrar una pasarela de pago real (ver punto 10).
-- Probado end-to-end en el navegador: agregar, incrementar, eliminar y persistencia tras recargar la página — todo funcionando correctamente.
+- Misma lógica de siempre en `js/cart.js` (localStorage, clave `pipope_cart_v1`) — **100% retrocompatible**: un carrito guardado en la versión anterior se sigue leyendo igual.
+- Ahora, además de "Finalizar compra (próximamente)" (que sigue deshabilitado — no hay cobro real todavía), hay un botón **"Enviar pedido por WhatsApp"** que arma un mensaje así:
 
-## 9. Qué información sigue pendiente de confirmar
+  ```
+  Hola PIPOPSHOP 👋 Quiero hacer este pedido:
 
-Por la regla de veracidad del proyecto, **no se inventó ningún dato**. Lo que investigué en donmayoreo.com y owalalife.com me permitió confirmar únicamente:
+  • Termo PIPOPSHOP 24 oz — Naranja — x2 — $500.00 c/u = $1,000.00
+  • Termo PIPOPSHOP 32 oz — Verde — x1 — $550.00 c/u = $550.00
 
-- Que existen termos "estilo Owala" de 24 oz y 32 oz comercializados por proveedores mayoristas en México (referencia: donmayoreo.com).
-- La conversión matemática aproximada oz → ml (24 oz ≈ 710 ml, 32 oz ≈ 946 ml).
+  Subtotal: $1,550.00
+  Total: $1,550.00
 
-**No pude confirmar** (por lo tanto NO están en el sitio como datos definitivos, sino marcados como "Por confirmar" / "Próximamente"):
+  ¿Me confirman disponibilidad y cómo continuar? ¡Gracias!
+  ```
 
-- Material exacto del termo.
-- Tecnología de aislamiento y horas de conservación de frío/calor.
+  y abre WhatsApp con ese texto ya escrito. La lógica está en `buildOrderWhatsAppMessage()` dentro de `js/main.js`.
+
+## 9. WhatsApp — cómo está configurado
+
+Todo vive en **[`js/data/futureIntegrations.js`](js/data/futureIntegrations.js)**, bloque `whatsapp`:
+
+```js
+whatsapp: {
+  enabled: true,
+  phoneNumber: "522227821556", // +52 222 782 1556
+  defaultMessage: "..."
+}
+```
+
+Con esto activo se encienden automáticamente: el botón flotante, el botón del carrito, el botón de cotización de Mayoreo y el enlace del footer. Si en algún momento necesitas cambiar el número o desactivarlo temporalmente, este es el único lugar que hay que tocar.
+
+## 10. Qué información sigue pendiente de confirmar
+
+Sin cambios respecto a la regla de veracidad del proyecto — sigue sin inventarse nada:
+
+- Material exacto del termo, tecnología de aislamiento, horas de conservación de frío/calor.
 - Dimensiones y peso exactos.
-- Colores/variantes reales disponibles para venta individual.
-- Stock real.
-- Garantía.
-- Políticas de envío (tiempos y costos).
-- Políticas de devolución.
-- Precios de venta definitivos (los actuales son temporales).
-- Si las unidades son o no originales de la marca Owala (donmayoreo.com las cataloga como "Calidad Media", sin especificar fabricante) — por eso el sitio aclara explícitamente que **PIPOPE SHOPE no es una tienda oficial de Owala**.
+- Stock real por color.
+- Garantía, políticas de envío y devolución.
+- Si las unidades son o no originales de la marca Owala — el sitio aclara que **PIPOPSHOP no es una tienda oficial de Owala**.
 
-En cuanto tengas esta información confirmada con tu proveedor, se actualiza directamente en `js/data/products.js`.
+Las reglas y precios de **Mayoreo sí están confirmados** (los diste directamente): mínimo 5 piezas combinables, precio automático desde la pieza 5, y la tabla de precios por modelo en `js/data/wholesale.js`.
 
-## 10. Qué funciones están preparadas para versiones futuras
+## 11. Qué queda preparado para versiones futuras
 
-Toda la arquitectura ya tiene "ganchos" listos, desactivados hasta que definas la información real. Todo centralizado en **[`js/data/futureIntegrations.js`](js/data/futureIntegrations.js)**:
+Sigue centralizado en `js/data/futureIntegrations.js` (WhatsApp ya activo; el resto sigue apagado hasta que definas los datos):
 
-- Botón flotante de WhatsApp (estructura ya en `index.html`, oculta hasta activarla).
-- Instagram (incluida referencia a la cuenta `@pipope_shope` en un comentario, **sin mostrarla en el sitio**, tal como pediste).
-- TikTok y Facebook.
+- Instagram (cuenta `@pipope_shope` reservada en un comentario, **sin mostrarse en el sitio**, tal como pediste), TikTok, Facebook.
 - Formulario de contacto y dirección física.
 - Checkout real con Mercado Pago, PayPal y Stripe.
-- Reemplazo del logo provisional por el definitivo.
+- Logo definitivo (hoy sigue siendo un placeholder de texto).
+- Productos 20 oz, 40 oz y Tumbler como fichas propias en la tienda (ver punto 7).
 
-Para activar cualquiera de estas funciones: cambia `enabled: true` y completa los datos correspondientes en `futureIntegrations.js`; los componentes de la interfaz ya están preparados para leer de ahí (busca los comentarios `INTEGRACIÓN FUTURA` en `index.html` y `js/main.js`).
+## 12. Cómo iniciar la página
 
-## 11. Cómo iniciar la página nuevamente
-
-No requiere instalación ni servidor: solo abre el archivo `index.html` con doble clic, o desde tu navegador con:
-
-```
-file:///C:/Users/emili/OneDrive/Escritorio/PIPOPESHOP/index.html
-```
-
-Si en algún momento prefieres verla servida por un servidor local (por ejemplo, para evitar restricciones específicas de algún navegador), y más adelante instalas Node.js o Python, puedes usar respectivamente `npx serve .` o `python -m http.server` desde esta carpeta.
-
-## 12. Dirección local para visualizar el sitio ahora
-
-Ábrelo directamente en tu navegador (Chrome, Edge, Firefox) desde:
+Sin instalación: doble clic en `index.html`, o ábrelo desde tu navegador con:
 
 ```
-C:\Users\emili\OneDrive\Escritorio\PIPOPESHOP\index.html
+file:///C:/Users/emili/OneDrive/Escritorio/PIPOPSHOP/index.html
+```
+
+## 13. Dirección local para visualizar el sitio ahora
+
+```
+C:\Users\emili\OneDrive\Escritorio\PIPOPSHOP\index.html
 ```
 
 ---
 
-**Verificación realizada:** el sitio fue probado en el navegador (vista móvil, tablet y desktop): scroll del botón "Ver productos", tarjetas de producto, agregar/quitar/incrementar en el carrito, persistencia del carrito al recargar, menú móvil y acordeón de FAQ — todo funcionando correctamente y sin errores en consola.
+**Verificación realizada:** probado en navegador en móvil (~430px), tablet y desktop (1280px). Se revisaron: animaciones de aparición al hacer scroll, sombra del header, tarjetas de producto (ficha técnica plegable, cambio de color con transición), sección Mayoreo (tabla en desktop / tarjetas en móvil, botón de cotización con mensaje correcto), carrito (agregar/quitar/incrementar, botón de WhatsApp con mensaje formateado correctamente, botón de checkout sigue deshabilitado), menú móvil, acordeones de FAQ (general y de mayoreo), y persistencia de carrito en `localStorage` — todo funcionando sin errores en consola y sin romper nada de la versión anterior.

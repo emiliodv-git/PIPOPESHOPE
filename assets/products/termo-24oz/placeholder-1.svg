@@ -1,4 +1,4 @@
-<svg viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Imagen provisional del termo PIPOPE SHOPE 24 oz">
+<svg viewBox="0 0 400 560" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Imagen provisional del termo PIPOPSHOP 24 oz">
   <defs>
     <linearGradient id="bg24" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="#FFF3EC"/>
@@ -20,6 +20,6 @@
   <rect x="120" y="260" width="160" height="60" fill="#FFFFFF" fill-opacity="0.18"/>
   <!-- base -->
   <rect x="128" y="454" width="144" height="26" rx="12" fill="#14181C" fill-opacity="0.12"/>
-  <text x="200" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#14181C" fill-opacity="0.55">PIPOPE SHOPE · 24 oz</text>
+  <text x="200" y="530" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" fill="#14181C" fill-opacity="0.55">PIPOPSHOP · 24 oz</text>
   <text x="200" y="554" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" letter-spacing="2" fill="#14181C" fill-opacity="0.4">IMAGEN PROVISIONAL</text>
 </svg>

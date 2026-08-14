@@ -1,15 +1,17 @@
 /**
  * ============================================================================
- *  MAIN — PIPOPE SHOPE
+ *  MAIN — PIPOPSHOP
  * ============================================================================
- *  Inicializa el sitio: pinta catálogo/FAQ, conecta el carrito y maneja
- *  interacciones de UI (menú móvil, drawer del carrito, acordeón FAQ).
+ *  Inicializa el sitio: pinta catálogo/FAQ/mayoreo, conecta el carrito y
+ *  maneja interacciones de UI (menú móvil, drawer del carrito, acordeones,
+ *  animaciones de scroll y mensajes de WhatsApp).
  * ============================================================================
  */
 
 document.addEventListener("DOMContentLoaded", function () {
   renderProducts();
   renderFaq();
+  renderWholesale();
 
   Cart.onChange(renderCartDrawer);
   renderCartDrawer(Cart.getState());
@@ -17,7 +19,9 @@ document.addEventListener("DOMContentLoaded", function () {
   initMobileMenu();
   initCartDrawer();
   initProductGridEvents();
-  initFaqAccordion();
+  initFaqAccordion(); // delega también en el mini-FAQ de Mayoreo
+  initHeaderShadow();
+  initScrollReveal();
   initFutureIntegrations();
 });
 
@@ -39,6 +43,46 @@ function initMobileMenu() {
       toggle.setAttribute("aria-expanded", "false");
     });
   });
+}
+
+function initHeaderShadow() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+
+  function update() {
+    header.classList.toggle("is-scrolled", window.scrollY > 4);
+  }
+  update();
+  window.addEventListener("scroll", update, { passive: true });
+}
+
+/**
+ * Revela secciones/tarjetas con una transición suave al entrar en pantalla.
+ * Si el navegador no soporta IntersectionObserver, todo queda visible
+ * de inmediato (degradación seguraya — nunca oculta contenido para siempre).
+ */
+function initScrollReveal() {
+  const targets = document.querySelectorAll(".reveal");
+  if (!targets.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    targets.forEach((el) => el.classList.add("is-visible"));
+    return;
+  }
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+  );
+
+  targets.forEach((el) => observer.observe(el));
 }
 
 function initCartDrawer() {
@@ -85,6 +129,17 @@ function initCartDrawer() {
       Cart.removeItem(productId, colorName);
     }
   });
+
+  // Pequeña animación en el contador del carrito cada vez que cambia.
+  const countEl = document.getElementById("cart-count");
+  if (countEl) {
+    Cart.onChange(function () {
+      countEl.classList.remove("bump");
+      // Forzar reflow para poder re-disparar la animación en clics seguidos.
+      void countEl.offsetWidth;
+      countEl.classList.add("bump");
+    });
+  }
 }
 
 function initProductGridEvents() {
@@ -95,9 +150,28 @@ function initProductGridEvents() {
     const card = e.target.closest(".product-card");
     if (!card) return;
 
-    if (e.target.closest(".swatch")) {
+    const swatchBtn = e.target.closest(".swatch");
+    if (swatchBtn) {
       card.querySelectorAll(".swatch").forEach((s) => s.classList.remove("selected"));
-      e.target.closest(".swatch").classList.add("selected");
+      swatchBtn.classList.add("selected");
+
+      const image = swatchBtn.dataset.image;
+      const colorName = swatchBtn.dataset.color;
+      const mediaImg = card.querySelector(".product-media-img");
+      const colorLabel = card.querySelector('[data-role="color-label"]');
+      const productName = card.querySelector(".product-name").textContent;
+
+      if (image && mediaImg) {
+        mediaImg.classList.add("is-swapping");
+        setTimeout(() => {
+          mediaImg.src = image;
+          mediaImg.alt = `${productName} — color ${colorName}`;
+          mediaImg.classList.remove("is-swapping");
+        }, 160);
+      }
+      if (colorLabel) {
+        colorLabel.innerHTML = `Color: <strong>${colorName}</strong>`;
+      }
       return;
     }
 
@@ -122,8 +196,10 @@ function initProductGridEvents() {
       Cart.addItem(productId, quantity, colorName);
 
       addBtn.textContent = "Agregado ✓";
+      addBtn.classList.add("is-added");
       setTimeout(() => {
         addBtn.textContent = "Agregar al carrito";
+        addBtn.classList.remove("is-added");
       }, 1200);
     }
   });
@@ -136,11 +212,13 @@ function initProductGridEvents() {
   });
 }
 
+/**
+ * Acordeón reutilizable: funciona tanto para el FAQ general (#faq-list)
+ * como para el mini-FAQ de Mayoreo (#wholesale-faq-list), delegando en
+ * document para no depender de que el contenedor ya exista al cargar.
+ */
 function initFaqAccordion() {
-  const list = document.getElementById("faq-list");
-  if (!list) return;
-
-  list.addEventListener("click", function (e) {
+  document.addEventListener("click", function (e) {
     const question = e.target.closest(".faq-question");
     if (!question) return;
     const item = question.closest(".faq-item");
@@ -149,18 +227,130 @@ function initFaqAccordion() {
 }
 
 /**
- * INTEGRACIÓN FUTURA: activa el botón flotante de WhatsApp (y en el futuro,
- * otros bloques de contacto) leyendo js/data/futureIntegrations.js.
- * Mientras `enabled` sea false en ese archivo, no se muestra nada.
+ * ============================================================================
+ *  MENSAJES DE WHATSAPP
+ * ============================================================================
+ */
+function buildOrderWhatsAppMessage(state) {
+  const lines = ["Hola PIPOPSHOP 👋 Quiero hacer este pedido:", ""];
+
+  state.items.forEach((item) => {
+    const colorPart = item.colorName ? ` — ${item.colorName}` : "";
+    lines.push(
+      `• ${item.product.name}${colorPart} — x${item.quantity} — ${formatMoney(item.product.price, item.product.currency)} c/u = ${formatMoney(item.lineTotal, item.product.currency)}`
+    );
+  });
+
+  lines.push("");
+  lines.push(`Subtotal: ${formatMoney(state.subtotal, "MXN")}`);
+  lines.push(`Total: ${formatMoney(state.total, "MXN")}`);
+  lines.push("");
+  lines.push("¿Me confirman disponibilidad y cómo continuar? ¡Gracias!");
+
+  return lines.join("\n");
+}
+
+function buildWholesaleQuoteMessage() {
+  const min = (window.PIPOPE_WHOLESALE_RULES && window.PIPOPE_WHOLESALE_RULES.minUnits) || 5;
+  return `Hola PIPOPSHOP 👋 Quiero cotizar un pedido de mayoreo (mínimo ${min} piezas, combinables entre modelos y colores). ¿Me ayudan con la cotización?`;
+}
+
+function openWhatsApp(phoneNumber, message) {
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+  window.open(url, "_blank", "noopener");
+}
+
+/**
+ * INTEGRACIÓN FUTURA / ACTIVA: lee js/data/futureIntegrations.js y activa
+ * (o mantiene oculto) todo lo relacionado a WhatsApp (botón flotante,
+ * carrito, cotización de Mayoreo) e Instagram (ícono del header, footer,
+ * sección "Síguenos" y QR). Mientras un bloque tenga `enabled: false` o le
+ * falten datos, sus elementos permanecen ocultos — así se agregan TikTok,
+ * Facebook y pagos más adelante sin romper nada de lo ya activo.
  */
 function initFutureIntegrations() {
   const config = window.PIPOPE_FUTURE_INTEGRATIONS;
   if (!config) return;
 
-  const waBtn = document.getElementById("whatsapp-float");
-  if (waBtn && config.whatsapp && config.whatsapp.enabled && config.whatsapp.phoneNumber) {
+  const waEnabled = Boolean(
+    config.whatsapp && config.whatsapp.enabled && config.whatsapp.phoneNumber
+  );
+  const phoneNumber = waEnabled ? config.whatsapp.phoneNumber : null;
+
+  const waFloatBtn = document.getElementById("whatsapp-float");
+  if (waFloatBtn && waEnabled) {
     const message = encodeURIComponent(config.whatsapp.defaultMessage || "");
-    waBtn.href = `https://wa.me/${config.whatsapp.phoneNumber}?text=${message}`;
-    waBtn.style.display = "flex";
+    waFloatBtn.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    waFloatBtn.style.display = "flex";
+  }
+
+  const footerWaLink = document.getElementById("footer-whatsapp-link");
+  if (footerWaLink && waEnabled) {
+    const message = encodeURIComponent(config.whatsapp.defaultMessage || "");
+    footerWaLink.href = `https://wa.me/${phoneNumber}?text=${message}`;
+    footerWaLink.style.display = "block";
+  }
+
+  const cartWaBtn = document.getElementById("cart-whatsapp-btn");
+  if (cartWaBtn) {
+    if (waEnabled) {
+      cartWaBtn.style.display = "flex";
+      cartWaBtn.addEventListener("click", function () {
+        const state = Cart.getState();
+        if (!state.items.length) return;
+        openWhatsApp(phoneNumber, buildOrderWhatsAppMessage(state));
+      });
+    } else {
+      cartWaBtn.style.display = "none";
+    }
+  }
+
+  const wholesaleCtaBtn = document.getElementById("wholesale-cta-btn");
+  if (wholesaleCtaBtn) {
+    if (waEnabled) {
+      wholesaleCtaBtn.disabled = false;
+      wholesaleCtaBtn.title = "";
+      wholesaleCtaBtn.addEventListener("click", function () {
+        openWhatsApp(phoneNumber, buildWholesaleQuoteMessage());
+      });
+    } else {
+      wholesaleCtaBtn.disabled = true;
+      wholesaleCtaBtn.title = "Próximamente";
+    }
+  }
+
+  // ---- Instagram (mismo patrón: oculto hasta que enabled + url estén listos) ----
+  const igEnabled = Boolean(config.instagram && config.instagram.enabled && config.instagram.url);
+  if (igEnabled) {
+    const igUrl = config.instagram.url;
+    const igHandle = config.instagram.handle ? `@${config.instagram.handle}` : igUrl;
+
+    const headerIgLink = document.getElementById("header-instagram-link");
+    if (headerIgLink) {
+      headerIgLink.href = igUrl;
+      headerIgLink.style.display = "flex";
+    }
+
+    const footerIgLink = document.getElementById("footer-instagram-link");
+    const footerIgHandle = document.getElementById("footer-instagram-handle");
+    if (footerIgLink) {
+      footerIgLink.href = igUrl;
+      footerIgLink.style.display = "flex";
+      if (footerIgHandle) footerIgHandle.textContent = igHandle;
+    }
+
+    const followBtn = document.getElementById("instagram-follow-btn");
+    if (followBtn) {
+      followBtn.href = igUrl;
+      followBtn.style.display = "inline-flex";
+    }
+
+    const qrLink = document.getElementById("instagram-qr-link");
+    const qrHandle = document.getElementById("instagram-qr-handle");
+    if (qrLink) {
+      qrLink.href = igUrl;
+      qrLink.style.display = "block";
+      if (qrHandle) qrHandle.textContent = igHandle;
+    }
   }
 }

@@ -1,6 +1,6 @@
 /**
  * ============================================================================
- *  CARRITO — PIPOPE SHOPE
+ *  CARRITO — PIPOPSHOP
  * ============================================================================
  *  Carrito de compras 100% frontend, persistido en localStorage.
  *  NO procesa pagos reales todavía (ver js/data/futureIntegrations.js).

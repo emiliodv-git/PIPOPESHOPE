@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PIPOPE SHOPE — Termos estilo Owala | 24 oz y 32 oz</title>
-  <meta name="description" content="PIPOPE SHOPE: termos estilo Owala de 24 oz y 32 oz en México. Diseño premium, catálogo en crecimiento." />
+  <title>PIPOPSHOP — Termos estilo Owala | 24 oz y 32 oz</title>
+  <meta name="description" content="PIPOPSHOP: termos estilo Owala de 24 oz y 32 oz en México. Diseño premium, 10 colores reales y precios de mayoreo desde 5 piezas." />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -13,17 +13,30 @@
   <header class="site-header" id="top">
     <div class="container header-inner">
       <a href="#top" class="brand">
-        <img src="assets/logo/logo-placeholder.svg" alt="PIPOPE SHOPE" class="brand-logo" />
+        <img src="assets/logo/logo-placeholder.svg" alt="PIPOPSHOP" class="brand-logo" />
       </a>
 
       <nav class="main-nav" id="main-nav">
         <a href="#top" class="nav-link">Inicio</a>
         <a href="#productos" class="nav-link">Productos</a>
         <a href="#caracteristicas" class="nav-link">Características</a>
+        <a href="#mayoreo" class="nav-link">Mayoreo</a>
         <a href="#faq" class="nav-link">FAQ</a>
       </nav>
 
       <div class="header-actions">
+        <div class="social-icons" id="header-social-icons">
+          <a href="#" id="header-instagram-link" class="icon-link" target="_blank" rel="noopener" aria-label="Síguenos en Instagram" style="display:none;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+            </svg>
+          </a>
+          <!-- INTEGRACIÓN FUTURA: TikTok y Facebook — agrega su <a class="icon-link"> aquí
+               siguiendo el mismo patrón y actívalos en js/data/futureIntegrations.js -->
+        </div>
+
         <button class="cart-toggle" id="cart-toggle" aria-label="Abrir carrito">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M6 6h15l-1.5 9h-12L5 3H2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,19 +59,30 @@
     <div class="container hero-inner">
       <div class="hero-copy">
         <p class="eyebrow">Nueva tienda en México</p>
-        <h1>PIPOPE SHOPE</h1>
+        <h1>PIPOPSHOP</h1>
         <p class="hero-text">
           Termos estilo Owala en dos capacidades: 24 oz y 32 oz.
           Diseño premium, mucho espacio para tu día a día.
         </p>
         <a href="#productos" class="btn btn-primary" id="hero-cta">Ver productos</a>
-        <p class="hero-disclaimer">
-          PIPOPE SHOPE no es una tienda oficial de Owala. Los productos son termos de estilo similar,
-          comercializados a través de proveedores mayoristas.
-        </p>
+
+        <div class="hero-stats">
+          <div>
+            <p class="hero-stat-value">2</p>
+            <p class="hero-stat-label">Capacidades disponibles</p>
+          </div>
+          <div>
+            <p class="hero-stat-value">10</p>
+            <p class="hero-stat-label">Colores reales</p>
+          </div>
+          <div>
+            <p class="hero-stat-value">5+</p>
+            <p class="hero-stat-label">Piezas para precio mayoreo</p>
+          </div>
+        </div>
       </div>
-      <div class="hero-media">
-        <img src="assets/products/hero-placeholder.svg" alt="Termos PIPOPE SHOPE 24 oz y 32 oz (imagen provisional)" />
+      <div class="hero-media reveal">
+        <img src="assets/products/hero-placeholder.svg" alt="Termos PIPOPSHOP 24 oz y 32 oz (imagen provisional)" />
       </div>
     </div>
   </section>
@@ -72,6 +96,11 @@
       <div class="product-grid" id="product-grid">
         <!-- Las tarjetas de producto se generan dinámicamente desde js/data/products.js -->
       </div>
+
+      <p class="catalog-note">
+        Más capacidades (20 oz, 40 oz y modelo Tumbler) llegarán pronto a la tienda en línea —
+        mientras tanto, están disponibles por pedido de mayoreo. <a href="#mayoreo" style="text-decoration:underline;">Ver Mayoreo</a>.
+      </p>
     </div>
   </section>
 
@@ -81,7 +110,7 @@
       <h2 class="section-title">Características</h2>
       <p class="section-subtitle">Lo que sí podemos confirmarte hoy — el resto de la ficha técnica se irá completando con nuestro proveedor.</p>
 
-      <div class="compare-table-wrap">
+      <div class="compare-table-wrap reveal">
         <table class="compare-table">
           <thead>
             <tr>
@@ -102,34 +131,109 @@
               <td>~946 ml</td>
             </tr>
             <tr>
-              <td>Ideal para</td>
-              <td>Uso diario, escuela, oficina</td>
-              <td>Jornadas largas, mayor hidratación</td>
-            </tr>
-            <tr>
               <td>Material / aislamiento</td>
               <td colspan="2" class="pending-cell">Por confirmar con proveedor</td>
             </tr>
             <tr>
               <td>Colores disponibles</td>
-              <td colspan="2" class="pending-cell">Por confirmar</td>
+              <td colspan="2">Azul marino, azul rey, blanco, cactus, morado, naranja, negro, piel, rosa y verde</td>
             </tr>
           </tbody>
         </table>
       </div>
 
       <div class="highlight-grid">
-        <div class="highlight-card">
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">✦</div>
           <h3>Diseño premium</h3>
           <p>Una imagen limpia y moderna, pensada para verse bien en tu escritorio, tu mochila o tu feed.</p>
         </div>
-        <div class="highlight-card">
-          <h3>Catálogo en crecimiento</h3>
-          <p>Empezamos con termos 24 oz y 32 oz. Iremos sumando más productos y variantes conforme crezca PIPOPE SHOPE.</p>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">◐</div>
+          <h3>Fotografías reales</h3>
+          <p>Cada color que ves en el catálogo es una fotografía real de nuestro proveedor, no una ilustración.</p>
         </div>
-        <div class="highlight-card">
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">↗</div>
+          <h3>Catálogo en crecimiento</h3>
+          <p>Empezamos con termos 24 oz y 32 oz. Iremos sumando más capacidades conforme crezca PIPOPSHOP.</p>
+        </div>
+        <div class="highlight-card reveal">
+          <div class="highlight-icon">◷</div>
           <h3>Hecho para tu ritmo</h3>
-          <p>Dos capacidades para que elijas según tu rutina: del día a día a las jornadas más largas.</p>
+          <p>Distintas capacidades para que elijas según tu rutina: del día a día a las jornadas más largas.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= MAYOREO ============================= -->
+  <section class="wholesale" id="mayoreo">
+    <div class="container">
+      <div class="wholesale-header reveal">
+        <p class="eyebrow">Ventas por mayoreo</p>
+        <h2 class="section-title">Compra al mayoreo, combina como quieras</h2>
+        <p class="section-subtitle">
+          Arma tu pedido mínimo de 5 piezas mezclando los modelos y colores que quieras.
+          El precio de mayoreo se aplica automático — sin trámites extra.
+        </p>
+      </div>
+
+      <div class="wholesale-steps">
+        <div class="wholesale-step reveal">
+          <div class="wholesale-step-number">1</div>
+          <h3>Elige modelos y colores</h3>
+          <p>Combina libremente entre nuestros modelos y los 10 colores disponibles hasta reunir 5 piezas o más.</p>
+        </div>
+        <div class="wholesale-step reveal">
+          <div class="wholesale-step-number">2</div>
+          <h3>Confirmamos tu pedido</h3>
+          <p>Revisamos disponibilidad de cada modelo y color y te confirmamos el total con precio de mayoreo.</p>
+        </div>
+        <div class="wholesale-step reveal">
+          <div class="wholesale-step-number">3</div>
+          <h3>Coordinamos por WhatsApp</h3>
+          <p>Cerramos los detalles de pago y entrega directamente por WhatsApp.</p>
+        </div>
+      </div>
+
+      <p class="wholesale-rules-note reveal" id="wholesale-rules-note"><!-- Generado desde js/data/wholesale.js --></p>
+
+      <div class="wholesale-price-block reveal">
+        <h3 class="wholesale-price-title">Precios de mayoreo por pieza</h3>
+
+        <div class="wholesale-price-table-wrap">
+          <table class="wholesale-price-table">
+            <thead>
+              <tr>
+                <th>Modelo</th>
+                <th>Precio</th>
+              </tr>
+            </thead>
+            <tbody id="wholesale-table-body">
+              <!-- Generado desde js/data/wholesale.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="wholesale-price-cards" id="wholesale-price-cards">
+          <!-- Generado desde js/data/wholesale.js -->
+        </div>
+      </div>
+
+      <div class="wholesale-cta reveal">
+        <h3>¿Listo para tu pedido de mayoreo?</h3>
+        <p>Cuéntanos qué modelos y colores buscas y te ayudamos a armar tu pedido o tu cotización personalizada si necesitas más piezas.</p>
+        <button type="button" class="btn btn-whatsapp" id="wholesale-cta-btn" disabled title="Próximamente">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.23 8.23 0 0 1-1.27-4.39c0-4.55 3.7-8.25 8.26-8.25 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.42 5.84c0 4.55-3.71 8.25-8.26 8.25Zm4.53-6.18c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+          Solicitar cotización por WhatsApp
+        </button>
+      </div>
+
+      <div class="wholesale-faq reveal">
+        <h3 class="wholesale-price-title">Preguntas frecuentes de mayoreo</h3>
+        <div class="faq-list" id="wholesale-faq-list">
+          <!-- Generado desde js/data/wholesale.js -->
         </div>
       </div>
     </div>
@@ -146,30 +250,71 @@
     </div>
   </section>
 
+  <!-- ============================= INSTAGRAM ============================= -->
+  <section class="instagram-follow" id="instagram">
+    <div class="container instagram-follow-inner">
+      <div class="instagram-follow-copy reveal">
+        <p class="eyebrow">Síguenos</p>
+        <h2 class="section-title">Síguenos en Instagram</h2>
+        <p class="instagram-follow-text">
+          Descubre nuevos colores, promociones, novedades y contenido exclusivo.
+        </p>
+        <a href="#" id="instagram-follow-btn" class="btn btn-primary" target="_blank" rel="noopener" style="display:none;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          Seguir en Instagram
+        </a>
+        <!-- INTEGRACIÓN FUTURA: cuando actives TikTok/Facebook en
+             js/data/futureIntegrations.js, agrega aquí un botón secundario
+             siguiendo el mismo patrón. -->
+      </div>
+
+      <div class="instagram-follow-qr reveal">
+        <a href="#" id="instagram-qr-link" class="instagram-qr-card" target="_blank" rel="noopener" aria-label="Abrir el perfil de Instagram de PIPOPSHOP" style="display:none;">
+          <img src="assets/social/instagram-qr.png" alt="Código QR que enlaza al Instagram de PIPOPSHOP" class="instagram-qr-img" />
+        </a>
+        <p class="instagram-qr-handle" id="instagram-qr-handle"></p>
+      </div>
+    </div>
+  </section>
+
   <!-- ============================= FOOTER ============================= -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-brand">
-        <img src="assets/logo/logo-placeholder.svg" alt="PIPOPE SHOPE" class="brand-logo" />
-        <p>Termos estilo Owala en México. Sitio en desarrollo — versión 1.</p>
+        <img src="assets/logo/logo-placeholder.svg" alt="PIPOPSHOP" class="brand-logo" />
+        <p>Termos estilo Owala en México. Sitio en desarrollo — versión 2.</p>
       </div>
 
       <div class="footer-col">
         <h4>Tienda</h4>
         <a href="#productos">Productos</a>
         <a href="#caracteristicas">Características</a>
+        <a href="#mayoreo">Mayoreo</a>
         <a href="#faq">FAQ</a>
       </div>
 
       <div class="footer-col">
         <h4>Contacto</h4>
+        <a href="#" id="footer-whatsapp-link" target="_blank" rel="noopener" style="display:none;">WhatsApp</a>
+        <a href="#" id="footer-instagram-link" class="footer-social-link" target="_blank" rel="noopener" style="display:none;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37Z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+          <span id="footer-instagram-handle">Instagram</span>
+        </a>
         <!--
-          INTEGRACIÓN FUTURA: WhatsApp, Instagram, TikTok, Facebook, formulario
-          de contacto y dirección física. Configura estos datos en
+          INTEGRACIÓN FUTURA: TikTok, Facebook, formulario de contacto y
+          dirección física. Configura estos datos en
           js/data/futureIntegrations.js (enabled: true) y aparecerán aquí
-          automáticamente. Por ahora se muestra como "próximamente".
+          automáticamente, siguiendo el mismo patrón que Instagram/WhatsApp.
         -->
-        <p class="pending-text">Canales de contacto — próximamente</p>
+        <p class="pending-text">Más redes — próximamente</p>
       </div>
 
       <div class="footer-col">
@@ -179,7 +324,7 @@
       </div>
     </div>
     <div class="container footer-bottom">
-      <p>&copy; 2026 PIPOPE SHOPE. Todos los derechos reservados.</p>
+      <p>&copy; 2026 PIPOPSHOP. Todos los derechos reservados.</p>
     </div>
   </footer>
 
@@ -204,20 +349,28 @@
         <span>Total</span>
         <span id="cart-total">$0.00 MXN</span>
       </div>
-      <p class="cart-note">Los precios mostrados son TEMPORALES / PLACEHOLDER mientras se define el catálogo final.</p>
-      <button class="btn btn-primary btn-block" id="checkout-btn" disabled title="Checkout real próximamente">
-        Finalizar compra (próximamente)
-      </button>
+      <div class="cart-actions">
+        <button class="btn btn-whatsapp btn-block" id="cart-whatsapp-btn" style="display:none;" disabled>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.23 8.23 0 0 1-1.27-4.39c0-4.55 3.7-8.25 8.26-8.25 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.42 5.84c0 4.55-3.71 8.25-8.26 8.25Zm4.53-6.18c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
+          Enviar pedido por WhatsApp
+        </button>
+        <p class="cart-note">Este pedido se confirma por WhatsApp. El cobro en línea todavía no está habilitado.</p>
+        <div class="cart-divider">o</div>
+        <button class="btn btn-primary btn-block" id="checkout-btn" disabled title="Checkout real próximamente">
+          Finalizar compra (próximamente)
+        </button>
+      </div>
     </div>
   </aside>
 
   <!-- INTEGRACIÓN FUTURA: botón flotante de WhatsApp. Permanece oculto hasta
        que js/data/futureIntegrations.js -> whatsapp.enabled sea true. -->
   <a class="whatsapp-float" id="whatsapp-float" href="#" target="_blank" rel="noopener" style="display:none;" aria-label="Escríbenos por WhatsApp">
-    WhatsApp
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M12.04 2c-5.5 0-9.96 4.46-9.96 9.96 0 1.76.46 3.45 1.32 4.95L2 22l5.2-1.36a9.9 9.9 0 0 0 4.84 1.23h.01c5.5 0 9.96-4.46 9.96-9.96S17.54 2 12.04 2Zm0 18.2h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.11.82.83-3.03-.2-.31a8.23 8.23 0 0 1-1.27-4.39c0-4.55 3.7-8.25 8.26-8.25 2.2 0 4.27.86 5.83 2.42a8.19 8.19 0 0 1 2.42 5.84c0 4.55-3.71 8.25-8.26 8.25Zm4.53-6.18c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.15.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.24-.42.08-.17.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.42h-.48c-.17 0-.43.06-.66.31-.23.25-.86.84-.86 2.04 0 1.2.88 2.37 1 2.53.12.17 1.73 2.64 4.2 3.7.59.25 1.05.4 1.4.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.15-1.18-.06-.1-.23-.16-.48-.28Z"/></svg>
   </a>
 
   <script src="js/data/products.js"></script>
+  <script src="js/data/wholesale.js"></script>
   <script src="js/data/futureIntegrations.js"></script>
   <script src="js/cart.js"></script>
   <script src="js/render.js"></script>
