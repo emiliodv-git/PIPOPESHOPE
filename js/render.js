@@ -127,11 +127,55 @@ const FAQ_ITEMS = [
   },
   {
     q: "¿Cómo se realizan las entregas?",
-    a: "Nuestra política de envíos todavía está en definición. Contenido pendiente — se publicará antes de habilitar compras reales."
+    a: 'Preparamos tu pedido desde Puebla, Puebla, en cuanto confirmamos tu pago. Puede entregarse por paquetería (dentro o fuera de Puebla) o de forma personal si estás en Puebla. Ver <a href="legal/politica-envios.html">Política de Envíos</a>.'
   },
   {
     q: "¿Cuándo estará disponible un color específico?",
     a: "Ambos modelos están disponibles en 10 colores: azul marino, azul rey, blanco, cactus, morado, naranja, negro, piel, rosa y verde. Puedes elegir el color desde la tarjeta de cada producto antes de agregarlo al carrito."
+  },
+  {
+    q: "¿Cómo funcionan las compras en PIPOPSHOP?",
+    a: 'Arma tu pedido en el carrito del sitio y envíalo por WhatsApp para confirmarlo con nosotros. El pago se coordina directamente contigo; el checkout automático en línea todavía no está disponible. Ver <a href="legal/terminos-condiciones.html">Términos y Condiciones</a>.'
+  },
+  {
+    q: "¿Puedo pagar con Mercado Pago?",
+    a: "Sí, Mercado Pago es nuestro método principal de pago en línea. Todos los precios del sitio están en pesos mexicanos (MXN)."
+  },
+  {
+    q: "¿Puedo pagar por transferencia SPEI?",
+    a: "Sí, aceptamos transferencia bancaria vía SPEI como método de pago, en pesos mexicanos (MXN)."
+  },
+  {
+    q: "¿Puedo pagar en efectivo?",
+    a: "Solo para entregas personales previamente acordadas contigo dentro de Puebla, Puebla. No aceptamos efectivo para envíos por paquetería."
+  },
+  {
+    q: "¿Cuándo se confirma mi pedido?",
+    a: "Tu pedido se confirma una vez que verificamos tu pago por Mercado Pago o transferencia SPEI. No preparamos ni enviamos pedidos con el pago pendiente de confirmación."
+  },
+  {
+    q: "¿Cuánto cuesta el envío?",
+    a: 'Para pedidos fuera de Puebla, el envío tiene un costo adicional al precio de los productos, que conocerás antes de confirmar tu compra. Ver <a href="legal/politica-envios.html">Política de Envíos</a>.'
+  },
+  {
+    q: "¿Me dan número de guía para rastrear mi pedido?",
+    a: "Sí. Cuando tu pedido se envíe por paquetería, te compartimos tu número de guía y la información necesaria para rastrearlo en cuanto esté disponible."
+  },
+  {
+    q: "¿Cuánto tardan en preparar y entregar mi pedido?",
+    a: "Tu pedido comienza a prepararse tras confirmar tu pago. El tiempo de entrega depende de tu destino y de la paquetería utilizada; todavía no tenemos un plazo fijo definido — preferimos no darte una fecha que no podamos garantizar. Esta respuesta se actualizará en cuanto lo definamos."
+  },
+  {
+    q: "¿Manejan ventas de mayoreo?",
+    a: 'Sí. Desde 5 piezas, combinables entre modelos y colores, el precio de mayoreo se aplica automático. Consulta la tabla de precios completa y el botón de cotización en la sección <a href="#mayoreo">Mayoreo</a>.'
+  },
+  {
+    q: "¿Puedo cambiar o devolver mi producto?",
+    a: 'Tienes derecho a cancelar tu compra dentro de los 5 días hábiles posteriores a la entrega, sin penalización, conforme a la Ley Federal de Protección al Consumidor. Fuera de ese plazo, y salvo productos incorrectos, dañados o defectuosos, no ofrecemos cambios ni devoluciones adicionales. Ver <a href="legal/cambios-devoluciones.html">Política de Cambios y Devoluciones</a>.'
+  },
+  {
+    q: "¿Cómo los contacto?",
+    a: 'Escríbenos a <a href="mailto:pipopeshop@gmail.com">pipopeshop@gmail.com</a> o por WhatsApp desde el botón del sitio.'
   }
 ];
 

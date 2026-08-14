@@ -19,7 +19,7 @@ HTML5, CSS3 y JavaScript "vanilla" (sin frameworks, sin bundler, sin dependencia
 ## 3. Archivos nuevos y modificados
 
 ```
-PIPOPSHOP/
+PIPOPESHOP/                              (nombre real de la carpeta del proyecto — el nombre comercial "PIPOPSHOP" no lleva la E)
 ├── index.html                          # Nav con Mayoreo, sección Mayoreo, carrito con botón WhatsApp
 ├── README.md
 ├── css/
@@ -31,9 +31,17 @@ PIPOPSHOP/
 │   │   └── futureIntegrations.js       # WhatsApp ahora activo; resto sigue desactivado
 │   ├── cart.js                         # Sin cambios (misma lógica y forma de datos)
 │   ├── render.js                       # + renderWholesale(), FAQ reutilizable, tarjetas rediseñadas
-│   └── main.js                         # + animaciones, mensajes de WhatsApp, sombra de header
+│   ├── main.js                         # + animaciones, mensajes de WhatsApp, sombra de header, Instagram
+│   └── legal.js                        # ⭐ NUEVO — activa WhatsApp/Instagram en el footer de las páginas legales
+├── legal/                              # ⭐ NUEVO — páginas legales (ver sección 14)
+│   ├── aviso-privacidad.html
+│   ├── terminos-condiciones.html
+│   ├── politica-envios.html
+│   ├── cambios-devoluciones.html
+│   └── politica-cookies.html
 └── assets/
     ├── logo/logo-placeholder.svg
+    ├── social/instagram-qr.png
     └── products/
         ├── hero-placeholder.svg
         └── colors/                     # 10 fotografías reales (compartidas por ambos productos)
@@ -99,7 +107,9 @@ Sin cambios respecto a la regla de veracidad del proyecto — sigue sin inventar
 - Material exacto del termo, tecnología de aislamiento, horas de conservación de frío/calor.
 - Dimensiones y peso exactos.
 - Stock real por color.
-- Garantía, políticas de envío y devolución.
+- Garantía (más allá del derecho de cancelación legal ya documentado en la Política de Cambios y Devoluciones).
+- Domicilio completo del negocio (calle, número, colonia, código postal) — ver sección 14.
+- Paqueterías y tiempos de entrega — ver sección 14.
 - Si las unidades son o no originales de la marca Owala — el sitio aclara que **PIPOPSHOP no es una tienda oficial de Owala**.
 
 Las reglas y precios de **Mayoreo sí están confirmados** (los diste directamente): mínimo 5 piezas combinables, precio automático desde la pieza 5, y la tabla de precios por modelo en `js/data/wholesale.js`.
@@ -108,7 +118,7 @@ Las reglas y precios de **Mayoreo sí están confirmados** (los diste directamen
 
 Sigue centralizado en `js/data/futureIntegrations.js` (WhatsApp ya activo; el resto sigue apagado hasta que definas los datos):
 
-- Instagram (cuenta `@pipope_shope` reservada en un comentario, **sin mostrarse en el sitio**, tal como pediste), TikTok, Facebook.
+- Instagram ya está **activo** (ícono en el header, footer y sección "Síguenos en Instagram" con QR verificado — apunta a `https://www.instagram.com/pipope_shope/`). Pendientes: TikTok, Facebook.
 - Formulario de contacto y dirección física.
 - Checkout real con Mercado Pago, PayPal y Stripe.
 - Logo definitivo (hoy sigue siendo un placeholder de texto).
@@ -119,14 +129,37 @@ Sigue centralizado en `js/data/futureIntegrations.js` (WhatsApp ya activo; el re
 Sin instalación: doble clic en `index.html`, o ábrelo desde tu navegador con:
 
 ```
-file:///C:/Users/emili/OneDrive/Escritorio/PIPOPSHOP/index.html
+file:///C:/Users/emili/OneDrive/Escritorio/PIPOPESHOP/index.html
 ```
 
 ## 13. Dirección local para visualizar el sitio ahora
 
 ```
-C:\Users\emili\OneDrive\Escritorio\PIPOPSHOP\index.html
+C:\Users\emili\OneDrive\Escritorio\PIPOPESHOP\index.html
 ```
+
+## 14. Páginas legales
+
+Se agregaron 5 páginas legales independientes en **[`legal/`](legal/)**, enlazadas desde una nueva columna "Información legal" en el footer de todo el sitio:
+
+- [`legal/aviso-privacidad.html`](legal/aviso-privacidad.html) — Aviso de Privacidad (LFPDPPP).
+- [`legal/terminos-condiciones.html`](legal/terminos-condiciones.html) — Términos y Condiciones.
+- [`legal/politica-envios.html`](legal/politica-envios.html) — Política de Envíos.
+- [`legal/cambios-devoluciones.html`](legal/cambios-devoluciones.html) — Cambios y Devoluciones.
+- [`legal/politica-cookies.html`](legal/politica-cookies.html) — Política de Cookies.
+
+Cada página reutiliza `css/styles.css` y el mismo footer real del sitio (con enlaces relativos `../`), pero **no** carga el carrito ni el catálogo — no lo necesitan. Solo cargan `js/data/futureIntegrations.js` + el nuevo `js/legal.js` (más pequeño) para que los enlaces de WhatsApp/Instagram del footer funcionen igual que en `index.html`.
+
+**Importante — conflicto legal detectado y resuelto:** pediste una política de "sin cambios ni devoluciones", pero la Ley Federal de Protección al Consumidor (artículo 56) obliga a dar a los consumidores un derecho de cancelación de 5 días hábiles en compras en línea — PROFECO lo confirma públicamente. No implementé la política "sin devoluciones" tal cual; `legal/cambios-devoluciones.html` incluye ese derecho obligatorio y aplica "sin cambios adicionales" solo para lo que excede ese mínimo legal. Detalle completo, con las fuentes citadas, en esa misma página.
+
+**Pendiente de completar** (marcado explícitamente dentro de cada página, no inventado):
+- Domicilio completo del responsable (calle, número, colonia, código postal) — requerido por la LFPDPPP para el Aviso de Privacidad.
+- Paquetería(s) que se usarán para los envíos.
+- Tiempos de entrega (dependen de la paquetería, todavía sin definir).
+- Procedimiento para productos incorrectos, dañados o defectuosos (plazo de reporte, quién cubre el envío de devolución, reposición vs. reembolso).
+- Datos de facturación electrónica (CFDI/RFC), si aplicará.
+
+La FAQ existente (`FAQ_ITEMS` en `js/render.js`) se amplió (no se duplicó) con preguntas sobre pagos, envíos, mayoreo y cambios/devoluciones, enlazando a estas páginas.
 
 ---
 
