@@ -23,8 +23,8 @@ const PIPOPE_FUTURE_INTEGRATIONS = {
 
   instagram: {
     enabled: true,
-    handle: "pipope_shope",
-    url: "https://www.instagram.com/pipope_shope/", // Perfil oficial confirmado
+    handle: "pipop_shope",
+    url: "https://www.instagram.com/pipop_shope/", // Perfil oficial confirmado
     showFeed: false // Feed embebido: preparado para el futuro, no implementado todavía
   },
 

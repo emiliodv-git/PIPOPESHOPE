@@ -118,7 +118,7 @@ Las reglas y precios de **Mayoreo sí están confirmados** (los diste directamen
 
 Sigue centralizado en `js/data/futureIntegrations.js` (WhatsApp ya activo; el resto sigue apagado hasta que definas los datos):
 
-- Instagram ya está **activo** (ícono en el header, footer y sección "Síguenos en Instagram" con QR verificado — apunta a `https://www.instagram.com/pipope_shope/`). Pendientes: TikTok, Facebook.
+- Instagram ya está **activo** (ícono en el header, footer y sección "Síguenos en Instagram" con QR verificado — apunta a `https://www.instagram.com/pipop_shope/`). Pendientes: TikTok, Facebook.
 - Formulario de contacto y dirección física.
 - Checkout real con Mercado Pago, PayPal y Stripe.
 - Logo definitivo (hoy sigue siendo un placeholder de texto).
